@@ -21,23 +21,6 @@ async function registro(req, res) {
 
     const connection = await getConnection();
 
-    var verificar  = 0;
-    //if
-    if(cedula_usuario!="0000000000"){
-        verificar = await connection.query("SELECT * FROM usuarios WHERE cedula_usuario = ?", cedula_usuario);
-    }else{
-        verificar = [];
-    }
-    
-
-
-
-    console.log(verificar.length);
-
-
-    if (verificar.length >= 1)
-        return res.status(400).send("Esta cedula ya esta registrada");
-
     const sal = await bcrypt.genSalt(10);
 
     const hash = await bcrypt.hash(password_usuario, sal);
