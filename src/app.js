@@ -6,6 +6,7 @@ import registroRoutes from "./routes/registro_usr.routes";
 import torneoR from "./routes/torneo.routes";
 import disciplinaR from "./routes/disciplinas.routes";
 import categoriaR from "./routes/categorias.routes";
+import partipantesR from "./routes/participantes.routes";
 import cor from "cors";
 
 const app= express();
@@ -24,6 +25,6 @@ app.use("/api/usr_r",registroRoutes);
 app.use("/api/torneo",torneoR)
 app.use("/api/disciplina",disciplinaR)
 app.use("/api/categoria",categoriaR)
-
+app.use("/api/participantes",partipantesR)
 export default app;
 
