@@ -3,6 +3,6 @@ import {methods as disciplinaController} from "./../controllers/disciplina.contr
 
 const router = Router();
 
-router.post("/", disciplinaController.l_disciplinas_torneo);
+router.get("/", disciplinaController.l_disciplinas_torneo);
 
 export default router; 
