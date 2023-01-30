@@ -2,8 +2,9 @@ import { json } from "express";
 import { getConnection } from "./../database/database";
 
 async function l_participantes(req, res) {
+    const {id_usuario} = req.body;
     const connection = await getConnection();
-    const result = await connection.query("CALL `listar_participantes`();");
+    const result = await connection.query("CALL `listar_participantes`(?);",[id_usuario]);
     res.send(result);
 }
 
