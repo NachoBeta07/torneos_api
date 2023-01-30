@@ -19,4 +19,7 @@ router.post("/iap", participantesController.insert_archivosparticipantes);
 router.put("/pap", participantesController.put_archivosparticipantes);
 router.delete("/dap", participantesController.delete_archivosparticipantes);
 
+router.post("/lpc", participantesController.l_participantescategorias);
+router.post("/bpnc", participantesController.b_participante_no_categoria);
+
 export default router; 

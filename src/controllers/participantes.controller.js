@@ -108,6 +108,22 @@ async function delete_archivosparticipantes(req, res) {
     res.send(result);
 }
 
+//Listar participantescategorias
+async function l_participantescategorias(req, res) {
+    const {id_usuario,id_categoria} = req.body;
+    const connection = await getConnection();
+    const result = await connection.query(" CALL `listar_participantes_categoria`(?,?);",[id_usuario,id_categoria]);
+    res.send(result);
+}
+
+//buscar participante que no esté en categoría
+async function b_participante_no_categoria(req, res) {
+    const {id_usuario,id_categoria} = req.body;
+    const connection = await getConnection();
+    const result = await connection.query(" CALL `listar_participantes_no_categoria`(?,?);",[id_usuario,id_categoria]);
+    res.send(result);
+}
+
 export const methods = {
     l_participantes,
     f_participantes_torneo,
@@ -122,5 +138,7 @@ export const methods = {
     f_participantes,
     insert_archivosparticipantes,
     put_archivosparticipantes,
-    delete_archivosparticipantes
+    delete_archivosparticipantes,
+    l_participantescategorias,
+    b_participante_no_categoria
 };
