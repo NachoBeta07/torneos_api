@@ -126,7 +126,7 @@ async function b_participante_no_categoria(req, res) {
 }
 
 //Insertar archivosparticipantes
-async function insert_archivosparticipantes2(req, res) {
+async function insert_participantes2(req, res) {
     const { cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante } = req.body;
     const connection = await getConnection();
     const result = await connection.query("CALL `insertarParticipantes2`(?, ?, ?, ?, ?, ?,?, ?, ?,?, ?, ?);",
@@ -134,7 +134,7 @@ async function insert_archivosparticipantes2(req, res) {
     res.send(result);
 }
 //Modificar archivosparticipantes
-async function put_archivosparticipantes2(req, res) {
+async function put_participantes2(req, res) {
     const { cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, id_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante } = req.body;
     const connection = await getConnection();
     const result = await connection.query("CALL `modificarParticipantes2`(?, ?, ?, ?, ?, ?,?,?, ?, ?,?, ?, ?);",
@@ -161,7 +161,6 @@ export const methods = {
     delete_archivosparticipantes,
     l_participantescategorias,
     b_participante_no_categoria,
-    insert_archivosparticipantes2,
-    put_archivosparticipantes2
-
+    insert_participantes2,
+    put_participantes2
 };
