@@ -135,10 +135,11 @@ async function insert_participantes2(req, res) {
 }
 //Modificar archivosparticipantes
 async function put_participantes2(req, res) {
-    const { cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, id_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante } = req.body;
+    const { cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, id_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante,id_archivoParticipante_participante
+    ,id_archivoParticipante} = req.body;
     const connection = await getConnection();
-    const result = await connection.query("CALL `modificarParticipantes2`(?, ?, ?, ?, ?, ?,?,?, ?, ?,?, ?, ?);",
-        [cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, id_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante]);
+    const result = await connection.query("CALL `modificarParticipantes2`(?, ?, ?, ?, ?, ?,?,?, ?, ?,?, ?, ?,?,?);",
+        [cedula_participante, nombres_participante, apellidos_participante, telefono_participante, fechaNacimiento_participante, correo_participante, id_participante_usuario, genero_participante, id_participante, nombre_archivoParticipante, nombre_fotoParticipante, ruta_archivoParticipante, ruta_fotoParticipante,id_archivoParticipante_participante,id_archivoParticipante]);
     res.send(result);
 }
 
