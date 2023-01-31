@@ -22,5 +22,8 @@ router.delete("/dap", participantesController.delete_archivosparticipantes);
 router.post("/lpc", participantesController.l_participantescategorias);
 router.post("/bpnc", participantesController.b_participante_no_categoria);
 
+router.post("/iap2", participantesController.insert_archivosparticipantes2);
+router.put("/pap2", participantesController.put_archivosparticipantes2);
+
 
 export default router; 
