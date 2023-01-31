@@ -23,10 +23,10 @@ app.use(express.json());
 //Routes
 app.use("/api/usr",logRoutes);
 app.use("/api/usr_r",registroRoutes);
-app.use("/api/torneo",torneoR)
-app.use("/api/disciplina",disciplinaR)
-app.use("/api/categoria",categoriaR)
-app.use("/api/participantes",partipantesR)
+app.use("/api/torneo",torneoR);
+app.use("/api/disciplina",disciplinaR);
+app.use("/api/categoria",categoriaR);
+app.use("/api/participantes",partipantesR);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
