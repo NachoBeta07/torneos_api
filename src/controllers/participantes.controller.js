@@ -144,6 +144,24 @@ async function put_participantes2(req, res) {
 }
 
 
+async function filtrar_cantidad_listado_deportistas(req, res) {
+    const {id_usuario} = req.body;
+    const connection = await getConnection();
+    const result = await connection.query(" CALL `filtrar_cantidad_listado_deportistas`(?);",[id_usuario]);
+    res.send(result);
+}
+
+
+async function filtrar_archivo_participante(req, res) {
+    const {id_participante} = req.body;
+    const connection = await getConnection();
+    const result = await connection.query("CALL `filtrar_archivo_participante`(?);",[id_participante]);
+    res.send(result);
+}
+
+
+
+
 
 export const methods = {
     l_participantes,
@@ -163,5 +181,7 @@ export const methods = {
     l_participantescategorias,
     b_participante_no_categoria,
     insert_participantes2,
-    put_participantes2
+    put_participantes2,
+    filtrar_cantidad_listado_deportistas,
+    filtrar_archivo_participante
 };

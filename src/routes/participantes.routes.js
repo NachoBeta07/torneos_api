@@ -25,5 +25,8 @@ router.post("/bpnc", participantesController.b_participante_no_categoria);
 router.post("/iap2", participantesController.insert_participantes2);
 router.put("/pap2", participantesController.put_participantes2);
 
+router.put("/fcld", participantesController.filtrar_cantidad_listado_deportistas);
+router.put("/fap", participantesController.filtrar_archivo_participante);
+
 
 export default router; 
