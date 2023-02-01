@@ -10,9 +10,10 @@ import partipantesR from "./routes/participantes.routes";
 import cor from "cors";
 
 
-const app= express();
+const app = express();
 const multer = require('multer');
 // settings 
+
 app.set("port", 4000);
 
 app.use(cor());
@@ -21,36 +22,59 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Routes
-app.use("/api/usr",logRoutes);
-app.use("/api/usr_r",registroRoutes);
-app.use("/api/torneo",torneoR);
-app.use("/api/disciplina",disciplinaR);
-app.use("/api/categoria",categoriaR);
-app.use("/api/participantes",partipantesR);
+app.use("/api/usr", logRoutes);
+app.use("/api/usr_r", registroRoutes);
+app.use("/api/torneo", torneoR);
+app.use("/api/disciplina", disciplinaR);
+app.use("/api/categoria", categoriaR);
+app.use("/api/participantes", partipantesR);
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        console.log(file.mimetype)
-      //cb(null, file.originalname + '-' + Date.now());
-      cb(null, file.originalname);
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    console.log(file.mimetype)
+    //cb(null, file.originalname + '-' + Date.now());
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.post('/api/upload', upload.single('file'), (req, res, next) => {
+  const file = req.file;
+  if (!file) {
+    const error = new Error('Please upload a file');
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.send(file);
+});
+
+const fs = require('fs');
+
+app.delete('/api/upload/:filename', (req, res) => {
+  console.log("hola");
+  const filename = req.params.filename;
+  const path = 'uploads/' + filename;
+  console.log(filename);
+  fs.unlink(path, (err) => {
+    if (err) {
+      return res.status(500).send({
+        success: false,
+        message: 'Error al eliminar el archivo'
+      });
     }
+    return res.send({
+      success: true,
+      message: 'Archivo eliminado exitosamente'
+    });
   });
-  
-  const upload = multer({ storage: storage });
-  
-  app.post('/api/upload', upload.single('file'), (req, res, next) => {
-    const file = req.file;
-    if (!file) {
-      const error = new Error('Please upload a file');
-      error.httpStatusCode = 400;
-      return next(error);
-    }
-    res.send(file);
-  });
+});
+
+
+
 
 
 export default app;
-
